@@ -1,8 +1,18 @@
 'use client'
-import React from 'react'
-import { motion } from 'framer-motion'
+import React, { useRef } from 'react'
+import { motion, useInView, useScroll } from 'framer-motion'
+import BrainPage from '../component/brain'
 
 export default function AboutPage() {
+    const containerRef = useRef()
+    const {scrollYProgress} = useScroll({container:containerRef})
+
+    const skillRef = useRef()
+    const isSkillRefInView = useInView(skillRef, {once: true, margin: "-100px"} )
+
+    const experienceRef = useRef()
+    const isExperienceRefInView = useInView(experienceRef, {once: true, margin: "-100px"} )
+
   return (
   <motion.div 
          className=' h-full  ' 
@@ -11,7 +21,7 @@ export default function AboutPage() {
          transition={{duration: 1.2}}>
 
           {/* CONTAINER */}
-        <div className=' h-full lg:flex'>
+        <div className=' h-full lg:flex overflow-scroll' ref={containerRef}>
           {/* TEXT CONTAINER */}
               <div className=' p-4 sm:p-7 md:p-12 lg:p-20 xl:p-44 flex flex-col gap-20 md:gap-32 lg:gap-48 xl:gap-60 lg:w-2/3 lg:pr-0 xl:1/2'>
                 {/* BIOGRAPHY CONTAINER */}
@@ -31,19 +41,32 @@ export default function AboutPage() {
                         </div>
 
                         {/* BIOGRAPHY SCROLL SVG */}
-                        <svg width="60px" height="60px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <motion.svg
+                        initial={{ opacity: 0.2, y: 0 }}
+                        animate={{ opacity: 1, y: '20px' }}
+                        transition={{repeat: Infinity, duration: 2, ease:'easeInOut'}}
+                        
+                         width="60px" height="60px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M5 15C5 16.8565 5.73754 18.6371 7.05029 19.9498C8.36305 21.2626 10.1435 21.9999 12 21.9999C13.8565 21.9999 15.637 21.2626 16.9498 19.9498C18.2625 18.6371 19 16.8565 19 15V9C19 7.14348 18.2625 5.36305 16.9498 4.05029C15.637 2.73754 13.8565 2 12 2C10.1435 2 8.36305 2.73754 7.05029 4.05029C5.73754 5.36305 5 7.14348 5 9V15Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M12 6V14" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M15 11L12 14L9 11" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                        </motion.svg>
 
                     </div>
                 {/* SKILL CONTAINER */}
-                    <div className=' flex flex-col gap-12 justify-center'>
+                    <div className=' flex flex-col gap-12 justify-center' ref={skillRef}>
                         {/* SKILL TITLE */}
-                        <h1 className=' text-3xl font-bold'>SKILLS</h1>
+                        <motion.h1 
+                        initial={{x: "-300px"}} 
+                        animate={isSkillRefInView ? {x:0} : {}} 
+                        transition={{delay: 0.3}} 
+                        className=' text-3xl font-bold'>SKILLS</motion.h1>
                         {/* SKILL LIST */}
-                          <div className=' flex gap-5 flex-wrap'>
+                          <motion.div
+                          initial={{x: "-900px"}} 
+                          animate={isSkillRefInView ? {x:0} : {}} 
+                          transition={{delay: 0.6}}
+                          className=' flex gap-5 flex-wrap'>
                               <div className=' rounded-md flex p-2 text-sm cursor-pointer bg-purple-500 text-white hover:bg-white hover:text-purple-700 hover:shadow-purple-300 hover:shadow-md border-purple-700 transition duration-300 ease-in-out '>JavaScript</div>
                               <div className=' rounded-md flex p-2 text-sm cursor-pointer bg-purple-500 text-white hover:bg-white hover:text-purple-700  hover:shadow-purple-300 hover:shadow-md border-purple-700 transition duration-300 ease-in-out    '>TypeScript</div>
                               <div className=' rounded-md flex p-2 text-sm cursor-pointer bg-purple-500 text-white hover:bg-white hover:text-purple-700  hover:shadow-purple-300 hover:shadow-md border-purple-700 transition duration-300 ease-in-out    '>React.js</div>
@@ -62,20 +85,32 @@ export default function AboutPage() {
                               <div className=' rounded-md flex p-2 text-sm cursor-pointer bg-purple-500 text-white hover:bg-white hover:text-purple-700  hover:shadow-purple-300 hover:shadow-md border-purple-700 transition duration-300 ease-in-out    '>WebGL</div>
                               <div className=' rounded-md flex p-2 text-sm cursor-pointer bg-purple-500 text-white hover:bg-white hover:text-purple-700  hover:shadow-purple-300 hover:shadow-md border-purple-700 transition duration-300 ease-in-out    '>Webpack</div>
                               <div className=' rounded-md flex p-2 text-sm cursor-pointer bg-purple-500 text-white hover:bg-white hover:text-purple-700  hover:shadow-purple-300 hover:shadow-md border-purple-700 transition duration-300 ease-in-out    '>Web3.js</div>
-                          </div>
+                          </motion.div>
                         {/*  SKILL SCROLL SVG */}
-                        <svg width="60px" height="60px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <motion.svg
+                        initial={{ opacity: 0.2, y: 0 }}
+                        animate={{ opacity: 1, y: '20px' }}
+                        transition={{repeat: Infinity, duration: 2, ease:'easeInOut'}}
+                         width="60px" height="60px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M5 15C5 16.8565 5.73754 18.6371 7.05029 19.9498C8.36305 21.2626 10.1435 21.9999 12 21.9999C13.8565 21.9999 15.637 21.2626 16.9498 19.9498C18.2625 18.6371 19 16.8565 19 15V9C19 7.14348 18.2625 5.36305 16.9498 4.05029C15.637 2.73754 13.8565 2 12 2C10.1435 2 8.36305 2.73754 7.05029 4.05029C5.73754 5.36305 5 7.14348 5 9V15Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M12 6V14" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M15 11L12 14L9 11" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                        </motion.svg>
                     </div>
                 {/* EXPIERNECE CONTAINER */}
-                    <div className=' flex flex-col gap-12 justify-center '>
+                    <div className=' flex flex-col gap-12 justify-center ' ref={experienceRef}>
                         {/* EXPERIENCE TITLE */}
-                        <h1 className=' text-3xl font-bold'>EXPERIENCE</h1>
+                        <motion.h1
+                          initial={{x: "-500px"}} 
+                          animate={isExperienceRefInView ? {x: '0'} : {}} 
+                          transition={{delay: 0.3}}
+                          className=' text-3xl font-bold'>EXPERIENCE</motion.h1>
                         {/* EXPERIENCE LIST */}
-                        <div className=''>
+                        <motion.div 
+                          initial={{x: "-1200px"}} 
+                          animate={isExperienceRefInView ? {x: '0'} : {}} 
+                          transition={{delay: 0.6}}
+                          className=''>
                           {/* EXPERIENCE LIST ITEM */}
                           <div className=' flex justify-between h-48'>
                             {/* LEFT SIDE */}
@@ -156,11 +191,13 @@ export default function AboutPage() {
                                 <div className='w-1/3 '></div>
                           </div>
                           
-                        </div>
+                        </motion.div>
                     </div>
               </div>
           {/* SVG CONTAINER */}
-              <div className=' hidden lg:block w-1/3 xl:1/2 '></div>
+              <div className=' hidden sticky top-0 z-30 lg:block w-1/3 xl:w-1/2 '>
+                <BrainPage scrollYProgress={ scrollYProgress }/>
+              </div>
         </div>
 
   </motion.div>
