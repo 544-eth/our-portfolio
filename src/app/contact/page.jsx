@@ -63,7 +63,7 @@ export default function ContactPage() {
             {/* FORM CONTAINER */}
               <form onSubmit={sendEmail} ref={form} className=' h-1/2 lg:h-full lg:w-1/2 bg-gradient-to-bl from-purple-100 to-blue-100 rounded-xl text-xl flex flex-col gap-8 justify-center p-20 '>
                 <span>Hello 0xjoun,</span>
-                <textarea rows={2} className=' bg-transparent border-b-[4px] border-black outline-none resize-none'
+                <textarea rows={7} className=' bg-transparent border-b-[4px] border-black outline-none resize-none'
                   name='user_message'
                 />
                 <span>Email Address Here:</span>
