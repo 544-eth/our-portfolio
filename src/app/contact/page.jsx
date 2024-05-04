@@ -61,7 +61,7 @@ export default function ContactPage() {
                 </div>
               </div>
             {/* FORM CONTAINER */}
-              <form onSubmit={sendEmail} ref={form} className=' h-1/2 lg:h-full lg:w-1/2 bg-gradient-to-bl from-purple-100 to-blue-100 rounded-xl text-xl flex flex-col gap-8 justify-center  p-5 lg:p-20 '>
+              <form onSubmit={sendEmail} ref={form} className=' lg:h-full lg:w-1/2 bg-gradient-to-bl from-purple-100 to-blue-100 rounded-xl text-xl flex flex-col gap-8 justify-center w-full h-full p-5 lg:p-20 '>
                 <span>Hello 0xjoun,</span>
                 <input className=' bg-transparent border-b-[4px] border-black outline-none resize-none'
                   name='user_message'
