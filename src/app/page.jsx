@@ -14,7 +14,7 @@ export default function HomePage() {
       <div className=' flex flex-col lg:flex-row h-full px-4 sm:p-8 md:p-12 lg:p-16'>
                                  {/* IMAGE CONTAINER */}
             <div className=' h-1/2 relative lg:h-full lg:w-1/2'>
-               <Image src='/image/hero.png' alt='' fill className=' object-contain'/>
+               <Image src='/image/pp.png' alt='' fill className=' object-contain'/>
             </div>
 
                                  {/* TEXT CONTAINER */}
